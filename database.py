@@ -4,7 +4,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # DATABASE_URL = "mysql+mysqlconnector://usuario:contraseña@localhost/nombre_db"
-DATABASE_URL = "mysql+mysqlconnector://root@localhost/erp-mrp-project"
+DATABASE_URL = "mysql+mysqlconnector://root@localhost/erp_mrp_project"
 
 engine = create_engine(DATABASE_URL)
 
