@@ -35,7 +35,7 @@ def update_partner(partner_id: int, partner_data: dict, db: Session = Depends(ge
     if not partner:
         raise HTTPException(status_code=404, detail="Partner not found")
 
-    for field, value in partner_data.items().dict():
+    for field, value in partner_data.items():
         setattr(partner, field, value)
 
     db.commit()

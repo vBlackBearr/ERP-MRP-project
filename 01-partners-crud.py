@@ -2,11 +2,11 @@
 from fastapi import FastAPI
 from reactpy.backend.fastapi import configure
 from reactpy import component, html, use_state, use_effect
-
+ 
 import asyncio
 from controllerPartners import router
 import reactpy
-from api import getPartners, postPartner, deletePartner
+from api import getPartners, postPartner, deletePartner, updatePartner
 
 bootstrap_css = html.link({
     "rel": "stylesheet",
@@ -47,14 +47,16 @@ def App():
             await postPartner(new_partner)
             await fillItems()
         else:
-            updated_partners = [partner if partner["id"] != partner_id else {
+            updated_partner = {
                 "name": name,
                 "details": details,
                 "direction": direction,
                 "api_endpoint": api_endpoint,
                 "id": partner_id
-            } for partner in partners]
-            set_partners(updated_partners)
+            } 
+            await updatePartner(partner_id, updated_partner)
+            await fillItems()
+            # set_partners(updated_partners)
 
         set_name("")
         set_details("")
