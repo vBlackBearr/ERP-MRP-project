@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from reactpy.backend.fastapi import configure
 from reactpy import component, html, use_state, use_effect
-from partners import partners
+from rawMaterialsCrud import rawMaterials
 
 import asyncio
 from controllerPartners import router
@@ -114,15 +114,12 @@ def App():
             }, "edit"),
     )
     ) for index, partner in enumerate(partners)]
-    
-
 
     def int1():
         setpage(html.h1("Bienvenido1"))
 
     def int2():
-        setpage(partners())
-
+        setpage(rawMaterials())
 
     return html.div(
         {
@@ -145,19 +142,15 @@ def App():
             html.button({
                 "on_click": lambda e: int1(),
                 "class_name": "btn btn-info"
-            },"boton"),
+            }, "boton"),
             html.button({
                 "on_click": lambda e: int2(),
                 "class_name": "btn btn-info"
-            },"boton2")
+            }, "boton2")
         ),
         html.br(),
         page
     )
-
-
-
-
 
 
 app = FastAPI()

@@ -1,4 +1,4 @@
--- Crear la tabla partners
+
 CREATE TABLE partners (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE partners (
     enabled BOOLEAN
 );
 
--- Crear la tabla raw-materials
+
 CREATE TABLE raw_materials (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE raw_materials (
     FOREIGN KEY (partner_id) REFERENCES partners(id)
 );
 
--- Crear la tabla raw-materials-stock
+
 CREATE TABLE raw_materials_stock (
     id INT AUTO_INCREMENT PRIMARY KEY,
     raw_material_id INT,
@@ -30,7 +30,7 @@ CREATE TABLE raw_materials_stock (
     FOREIGN KEY (raw_material_id) REFERENCES raw_materials(id)
 );
 
--- Crear la tabla products
+
 CREATE TABLE products (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE products (
     enabled BOOLEAN
 );
 
--- Crear la tabla products-stock
+
 CREATE TABLE products_stock (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT,
@@ -49,7 +49,7 @@ CREATE TABLE products_stock (
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
--- Crear la tabla bom (Bill of Materials)
+
 CREATE TABLE bom (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT,
@@ -61,7 +61,6 @@ CREATE TABLE bom (
     FOREIGN KEY (raw_material_id) REFERENCES raw_materials(id)
 );
 
--- Crear la tabla sales
 CREATE TABLE sales (
     id INT AUTO_INCREMENT PRIMARY KEY,
     date DATE,
@@ -70,7 +69,7 @@ CREATE TABLE sales (
     enabled BOOLEAN
 );
 
--- Crear la tabla products-sales (relación entre productos y ventas)
+
 CREATE TABLE products_sales (
     id INT AUTO_INCREMENT PRIMARY KEY,
     product_id INT,
