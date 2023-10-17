@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from reactpy.backend.fastapi import configure
 from reactpy import component, html, use_state, use_effect
+from partners import partners
 
 import asyncio
 from controllerPartners import router
@@ -114,47 +115,14 @@ def App():
     )
     ) for index, partner in enumerate(partners)]
     
-    htmlPrincipal = html.div(html.form(
-        {
-            "on_submit": handle_submit
-        },
-        html.input({
-            "type": "text",
-            "placeholder": "Name",
-            "on_change": lambda e: set_name(e["target"]["value"]),
-            "autofocus": True,
-            "value": name,
-            "class_name": "form-control mb-2"
-        }),
-        html.input({
-            "type": "text",
-            "placeholder": "Details",
-            "on_change": lambda e: set_details(e["target"]["value"]),
-            "value": details,
-            "class_name": "form-control mb-2"
-        }),
-        html.input({
-            "type": "text",
-            "placeholder": "Direction",
-            "on_change": lambda e: set_direction(e["target"]["value"]),
-            "value": direction,
-            "class_name": "form-control mb-2"
-        }),
-        html.input({
-            "type": "text",
-            "placeholder": "API Endpoint",
-            "on_change": lambda e: set_api_endpoint(e["target"]["value"]),
-            "value": api_endpoint,
-            "class_name": "form-control mb-2"
-        }),
-        html.button({
-            "type": "submit",
-            "class_name": "btn btn-primary btn-block"
-        }, "Create" if not editing else "Update"),
-    ),
-        html.ul(
-            list_items
-    ))
+
+
+    def int1():
+        setpage(html.h1("Bienvenido1"))
+
+    def int2():
+        setpage(partners())
+
 
     return html.div(
         {
@@ -174,9 +142,22 @@ def App():
         }
         },
             html.h2("DASHBOARD"),
-            html.button("boton"),
-            html.button("boton2")),
+            html.button({
+                "on_click": lambda e: int1(),
+                "class_name": "btn btn-info"
+            },"boton"),
+            html.button({
+                "on_click": lambda e: int2(),
+                "class_name": "btn btn-info"
+            },"boton2")
+        ),
+        html.br(),
+        page
     )
+
+
+
+
 
 
 app = FastAPI()
