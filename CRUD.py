@@ -114,6 +114,8 @@ def App():
             }, "edit"),
     )
     ) for index, partner in enumerate(partners)]
+    
+
 
     def int1():
         setpage(html.h1("Bienvenido1"))
