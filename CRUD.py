@@ -183,49 +183,17 @@ def App():
                             html.a({
                                 "class": "nav-link",
                                 "href": "#"
-                            }, "Pricing")
+                            }, "Raw Materials")
                         ),
                         html.li({
-                            "class": "nav-item dropdown"
+                            "class": "nav-item"
                         },
                             html.a({
-                                "class": "nav-link dropdown-toggle",
-                                "href": "#",
-                                "role": "button",
-                                "data-bs-toggle": "dropdown",
-                                "aria-expanded": "false"
-                            },
-                                   "Dropdown link"
-                                   ),
-                            html.ul({
-                                "class": "dropdown-menu"
-                            },
-                                html.li({
-                                    "class": "dropdown-item"
-                                },
-                                    html.a({
-                                        "class": "dropdown-item",
-                                        "href": "#"
-                                    },"Action")
-                                ),
-                                html.li({
-                                    "class": "dropdown-item"
-                                },
-                                    html.a({
-                                        "class": "dropdown-item",
-                                        "href": "#"
-                                    },"Another action")
-                                ),
-                                html.li({
-                                    "class": "dropdown-item"
-                                },
-                                    html.a({
-                                        "class": "dropdown-item",
-                                        "href": "#"
-                                    },"Something else here")
-                                )
-                            )
-                        )
+                                "class": "nav-link",
+                                "href": "#"
+                            }, "Products")
+                        ),
+
                     )
                 )
             )
