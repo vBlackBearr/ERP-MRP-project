@@ -3,19 +3,24 @@ from reactpy.backend.fastapi import configure
 from reactpy import component, html, use_state, use_effect
 from rawMaterialsCrud import rawMaterials
 
+from my_util import *
+import webview
+
 import asyncio
 from controllerPartners import router
 import reactpy
 from api import getPartners, postPartner, deletePartner, updatePartner
 
-bootstrap_css = html.link({
-    "rel": "stylesheet",
-    "href": "/_reactpy/assests/bootstrap.min.css"
-})
-
 
 @component
 def App():
+    webview.load_css('ruta/al/archivo/estilos.css')
+
+    bootstrap_css = html.link({
+        "rel": "stylesheet",
+        "href": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    })
+
     partners, set_partners = use_state([])
     name, set_name = use_state("")
     details, set_details = use_state("")
@@ -112,7 +117,7 @@ def App():
                 "on_click": lambda e, partner=partner: edit_button_click_handler(e, partner),
                 "class_name": "btn btn-secondary"
             }, "edit"),
-    )
+        )
     ) for index, partner in enumerate(partners)]
 
     def int1():
@@ -168,10 +173,9 @@ def App():
                 "rel": "stylesheet"
             }),
 
-
         ),
         html.div({"id": "wrapper"},
-                 #sidebar
+                 # sidebar
                  html.ul({
                      "class": "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion",
                      "id": "accordionSidebar"
