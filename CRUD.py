@@ -114,8 +114,6 @@ def App():
             }, "edit"),
     )
     ) for index, partner in enumerate(partners)]
-    
-
 
     def int1():
         setpage(html.h1("Bienvenido1"))
@@ -130,26 +128,128 @@ def App():
             }
         },
         bootstrap_css,
-        html.div({"style":  {
-            "width": "100%",
-            "height": "50px",
-            "background-color": "gray",
-            "position": "fixed",
-            "top": "0px",
-            "left": "0px",
-            "display": "flex"
-        }
+        html.nav({
+            "class": "navbar navbar-expand-lg bg-body-tertiary position-fixed top-0 start-0 w-100 p-2"
         },
-            html.h2("DASHBOARD"),
-            html.button({
-                "on_click": lambda e: int1(),
-                "class_name": "btn btn-info"
-            }, "boton"),
-            html.button({
-                "on_click": lambda e: int2(),
-                "class_name": "btn btn-info"
-            }, "boton2")
+            html.div({
+                "class": "container-fluid"
+            },
+                html.a({
+                    "class": "navbar-brand",
+                    "href": "#"
+                },"Navbar"),
+                html.button({
+                    "class": "navbar-toggler",
+                    "type": "button",
+                    "data-bs-toggle": "collapse",
+                    "data-bs-target": "#navbarNavDropdown",
+                    "aria-controls": "navbarNavDropdown",
+                    "aria-expanded": "false",
+                    "aria-label": "Toggle navigation"
+                },
+                    html.span({
+                        "class": "navbar-toggler-icon"
+                    })
+                ),
+                html.div({
+                    "class": "collapse navbar-collapse",
+                    "id": "navbarNavDropdown"
+                },
+                    html.ul({
+                        "class": "navbar-nav"
+                    },
+                        html.li({
+                            "class": "nav-item"
+                        },
+                            html.a({
+                                "class": "nav-link active",
+                                "aria-current": "page",
+                                "href": "#",
+                                "on_click": lambda e: int1()
+                            }, "Home")
+                        ),
+                        html.li({
+                            "class": "nav-item"
+                        },
+                            html.a({
+                                "class": "nav-link",
+                                "href": "#",
+                                "on_click": lambda e: int2()
+                            }, "Partners")
+                        ),
+                        html.li({
+                            "class": "nav-item"
+                        },
+                            html.a({
+                                "class": "nav-link",
+                                "href": "#"
+                            }, "Pricing")
+                        ),
+                        html.li({
+                            "class": "nav-item dropdown"
+                        },
+                            html.a({
+                                "class": "nav-link dropdown-toggle",
+                                "href": "#",
+                                "role": "button",
+                                "data-bs-toggle": "dropdown",
+                                "aria-expanded": "false"
+                            },
+                                   "Dropdown link"
+                                   ),
+                            html.ul({
+                                "class": "dropdown-menu"
+                            },
+                                html.li({
+                                    "class": "dropdown-item"
+                                },
+                                    html.a({
+                                        "class": "dropdown-item",
+                                        "href": "#"
+                                    },"Action")
+                                ),
+                                html.li({
+                                    "class": "dropdown-item"
+                                },
+                                    html.a({
+                                        "class": "dropdown-item",
+                                        "href": "#"
+                                    },"Another action")
+                                ),
+                                html.li({
+                                    "class": "dropdown-item"
+                                },
+                                    html.a({
+                                        "class": "dropdown-item",
+                                        "href": "#"
+                                    },"Something else here")
+                                )
+                            )
+                        )
+                    )
+                )
+            )
         ),
+        # html.div({"style":  {
+        #     "width": "100%",
+        #     "height": "50px",
+        #     "background-color": "gray",
+        #     "position": "relative",
+        #     "top": "0px",
+        #     "left": "0px",
+        #     "display": "flex"
+        # }
+        # },
+        #     html.h2("DASHBOARD"),
+        #     html.button({
+        #         "on_click": lambda e: int1(),
+        #         "class_name": "btn btn-info"
+        #     }, "boton"),
+        #     html.button({
+        #         "on_click": lambda e: int2(),
+        #         "class_name": "btn btn-info"
+        #     }, "boton2")
+        # ),
         html.br(),
         page
     )
