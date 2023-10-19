@@ -4,7 +4,6 @@ from reactpy import component, html, use_state, use_effect
 from rawMaterialsCrud import rawMaterials
 
 from my_util import *
-import webview
 
 import asyncio
 from controllerPartners import router
@@ -14,11 +13,13 @@ from api import getPartners, postPartner, deletePartner, updatePartner
 
 @component
 def App():
-    webview.load_css('ruta/al/archivo/estilos.css')
+
+    HERE = Path(__file__)
+    DATA_PATH = HERE.parent / "data.json"
 
     bootstrap_css = html.link({
         "rel": "stylesheet",
-        "href": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        "href": "https://elpatronhh.github.io/portfolio/bootstrap.min.css"
     })
 
     partners, set_partners = use_state([])
@@ -133,15 +134,15 @@ def App():
             }
         },
         bootstrap_css,
-        html.link({
-            "href": "css/sb-admin-2.min.css",
-            "rel": "stylesheet"
-        }),
-        html.link({
-            "href": "css/all.min.css",
-            "rel": "stylesheet",
-            "type": "text/css"
-        }),
+        # html.link({
+        #     "href": "https://elpatronhh.github.io/portfolio/sb-admin-2.min.css",
+        #     "rel": "stylesheet"
+        # }),
+        # html.link({
+        #     "href": "https://elpatronhh.github.io/portfolio/all.min.css",
+        #     "rel": "stylesheet",
+        #     "type": "text/css"
+        # }),
         html.div(
             html.meta({
                 "charset": "utf-8"
@@ -440,7 +441,13 @@ def App():
                          "Addons"
                      )
                  )
-                 )
+                 ), html.script({"src":"https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js"}),
+                    html.script({"src":"https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"}),
+                    html.script({"src":"https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/jquery-easing/jquery.easing.min.js"}),
+                    html.script({"src":"https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js"}),
+                    html.script({"src":"https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/chart.js/Chart.min.js"}),
+                    html.script({"src":"https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/js/demo/chart-area-demo.js"}),
+                    html.script({"src":"https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/js/demo/chart-pie-demo.js"})
 
     )
 
