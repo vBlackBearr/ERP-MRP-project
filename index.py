@@ -118,7 +118,7 @@ def App():
                 "on_click": lambda e, partner=partner: edit_button_click_handler(e, partner),
                 "class_name": "btn btn-secondary"
             }, "edit"),
-        )
+    )
     ) for index, partner in enumerate(partners)]
 
     def int1():
@@ -134,15 +134,15 @@ def App():
             }
         },
         bootstrap_css,
-        # html.link({
-        #     "href": "https://elpatronhh.github.io/portfolio/sb-admin-2.min.css",
-        #     "rel": "stylesheet"
-        # }),
-        # html.link({
-        #     "href": "https://elpatronhh.github.io/portfolio/all.min.css",
-        #     "rel": "stylesheet",
-        #     "type": "text/css"
-        # }),
+        html.link({
+            "href": "https://elpatronhh.github.io/portfolio/sb-admin-2.min.css",
+            "rel": "stylesheet"
+        }),
+        html.link({
+            "href": "https://elpatronhh.github.io/portfolio/all.min.css",
+            "rel": "stylesheet",
+            "type": "text/css"
+        }),
         html.div(
             html.meta({
                 "charset": "utf-8"
@@ -165,7 +165,7 @@ def App():
             }),
             html.title("PANEL ADMINISTRADOR"),
             html.link({
-                "href": "css/all.min.css",
+                "href": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css",
                 "rel": "stylesheet",
                 "type": "text/css"
             }),
@@ -192,14 +192,14 @@ def App():
                              html.i({
                                  "class": "fas fa-laugh-wink"
                              })
-                         ),
+                     ),
                          html.div({
                              "class": "sidebar-brand-text mx-3"
                          },
                              "ADMINISTRADOR",
                              html.sup()
-                         )
-                     ),
+                     )
+                 ),
 
                      # Divider
                      html.hr({
@@ -218,8 +218,8 @@ def App():
                                  "class": "fas fa-fw fa-tachometer-alt"
                              }),
                              "Dashboard"
-                         )
-                     ),
+                     )
+                 ),
 
                      # Divider
                      html.hr({
@@ -231,7 +231,7 @@ def App():
                          "class": "sidebar-heading"
                      },
                          "Interface"
-                     ),
+                 ),
 
                      # Nav Item - Pages Collapse Menu (TIER1)
                      html.li({
@@ -249,7 +249,7 @@ def App():
                                  "class": "fas fa-fw fa-cog"
                              }),
                              "TIER1"
-                         ),
+                     ),
                          html.div({
                              "class": "collapse",
                              "id": "collapseTwo",
@@ -263,22 +263,22 @@ def App():
                                      "class": "collapse-header"
                                  },
                                      "Custom Components:"
-                                 ),
+                             ),
                                  html.a({
                                      "class": "collapse-item",
                                      "href": "buttons.html"
                                  },
                                      "Compra"
-                                 ),
+                             ),
                                  html.a({
                                      "class": "collapse-item",
                                      "href": "cards.html"
                                  },
                                      "Pedidos"
-                                 )
                              )
                          )
-                     ),
+                     )
+                 ),
 
                      # Nav Item - Pages Collapse Menu (TIER2)
                      html.li({
@@ -296,7 +296,7 @@ def App():
                                  "class": "fas fa-fw fa-wrench"
                              }),
                              "TIER2"
-                         ),
+                     ),
                          html.div({
                              "class": "collapse",
                              "id": "collapseUtilities",
@@ -310,34 +310,34 @@ def App():
                                      "class": "collapse-header"
                                  },
                                      "Custom Utilities:"
-                                 ),
+                             ),
                                  html.a({
                                      "class": "collapse-item",
                                      "href": "utilities-color.html"
                                  },
                                      "Colors"
-                                 ),
+                             ),
                                  html.a({
                                      "class": "collapse-item",
                                      "href": "utilities-border.html"
                                  },
                                      "Borders"
-                                 ),
+                             ),
                                  html.a({
                                      "class": "collapse-item",
                                      "href": "utilities-animation.html"
                                  },
                                      "Animations"
-                                 ),
+                             ),
                                  html.a({
                                      "class": "collapse-item",
                                      "href": "utilities-other.html"
                                  },
                                      "Other"
-                                 )
                              )
                          )
-                     ),
+                     )
+                 ),
 
                      # Nav Item - Pages Collapse Menu (TIER3)
                      html.li({
@@ -353,7 +353,7 @@ def App():
                                  "class": "fas fa-fw fa-cog"
                              }),
                              "TIER3"
-                         ),
+                     ),
                          html.div({
                              "class": "collapse",
                              "id": "collapseTIER3",
@@ -367,22 +367,22 @@ def App():
                                      "class": "collapse-header"
                                  },
                                      "Custom Components:"
-                                 ),
+                             ),
                                  html.a({
                                      "class": "collapse-item",
                                      "href": "buttons.html"
                                  },
                                      "Buttons"
-                                 ),
+                             ),
                                  html.a({
                                      "class": "collapse-item",
                                      "href": "cards.html"
                                  },
                                      "Cards"
-                                 )
                              )
                          )
-                     ),
+                     )
+                 ),
 
                      # Nav Item - Pages Collapse Menu (LOGISTICA)
                      html.li({
@@ -398,7 +398,7 @@ def App():
                                  "class": "fas fa-fw fa-cog"
                              }),
                              "LOGISTICA"
-                         ),
+                     ),
                          html.div({
                              "class": "collapse",
                              "id": "collapseLOGISTICA",
@@ -412,22 +412,22 @@ def App():
                                      "class": "collapse-header"
                                  },
                                      "Custom Components:"
-                                 ),
+                             ),
                                  html.a({
                                      "class": "collapse-item",
                                      "href": "buttons.html"
                                  },
                                      "Buttons"
-                                 ),
+                             ),
                                  html.a({
                                      "class": "collapse-item",
                                      "href": "cards.html"
                                  },
                                      "Cards"
-                                 )
                              )
                          )
-                     ),
+                     )
+                 ),
 
                      # Divider
                      html.hr({
@@ -439,15 +439,21 @@ def App():
                          "class": "sidebar-heading"
                      },
                          "Addons"
-                     )
                  )
-                 ), html.script({"src":"https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js"}),
-                    html.script({"src":"https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"}),
-                    html.script({"src":"https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/jquery-easing/jquery.easing.min.js"}),
-                    html.script({"src":"https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js"}),
-                    html.script({"src":"https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/chart.js/Chart.min.js"}),
-                    html.script({"src":"https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/js/demo/chart-area-demo.js"}),
-                    html.script({"src":"https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/js/demo/chart-pie-demo.js"})
+        )
+        ), html.script({"src": "https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js"}),
+        html.script(
+            {"src": "https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"}),
+        html.script(
+            {"src": "https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/jquery-easing/jquery.easing.min.js"}),
+        html.script(
+            {"src": "https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js"}),
+        html.script(
+            {"src": "https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/chart.js/Chart.min.js"}),
+        html.script(
+            {"src": "https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/js/demo/chart-area-demo.js"}),
+        html.script(
+            {"src": "https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/js/demo/chart-pie-demo.js"})
 
     )
 
