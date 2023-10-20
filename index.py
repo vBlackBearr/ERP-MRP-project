@@ -9,17 +9,25 @@ from my_util import *
 import asyncio
 import reactpy
 
+
+#componentes
+from componentes.topbar import topbar
+from componentes.login import login
+from componentes.sidebar import sidebar
+
+
 app = FastAPI()
 # por buenas prácticas según se montan así los recursos en fastapi, yo digo que le hacen a la mamada nomás
-#x2
+# x2
+# x3 xd
 
 app.mount("/css", StaticFiles(directory="css"), name="css")
 app.mount("/js", StaticFiles(directory="js"), name="js")
 
 
+
 @component
 def App():
-
     HERE = Path(__file__)
     DATA_PATH = HERE.parent / "data.json"
 
@@ -124,7 +132,7 @@ def App():
                 "on_click": lambda e, partner=partner: edit_button_click_handler(e, partner),
                 "class_name": "btn btn-secondary"
             }, "edit"),
-    )
+        )
     ) for index, partner in enumerate(partners)]
 
     def int1():
@@ -133,110 +141,9 @@ def App():
     def int2():
         setpage(rawMaterials())
 
-    def login_user():
-        return (
-            html.div({"class": "container"},
-                     html.div({"class": "row justify-content-center"},
-                              html.div({"class": "col-xl-10 col-lg-12 col-md-9"},
-                                       html.div({"class": "card o-hidden border-0 shadow-lg my-5"},
-                                                html.div({"class": "card-body p-0"},
-                                                         html.div({"class": "row"},
-                                                                  html.div({
-                                                                               "class": "col-lg-6 d-none d-lg-block bg-login-image"}, ),
-                                                                  html.div({"class": "col-lg-6"},
-                                                                           html.div({"class": "p-5"},
-                                                                                    html.div(
-                                                                                        {"class": "text-center"},
-                                                                                        html.h1({
-                                                                                                    "class": "h4 text-gray-900 mb-4"},
-                                                                                                "Welcome Back!"),
-                                                                                        ),
-                                                                                    html.form({"class": "user"},
-                                                                                              html.div({
-                                                                                                           "class": "form-group"},
-                                                                                                       html.input({
-                                                                                                                      "type": "email",
-                                                                                                                      "class": "form-control form-control-user",
-                                                                                                                      "id": "exampleInputEmail",
-                                                                                                                      "aria-describedby": "emailHelp",
-                                                                                                                      "placeholder": "Enter Email Address..."
-                                                                                                                      })
-                                                                                                       ),
-                                                                                              html.div({
-                                                                                                           "class": "from-group"},
-                                                                                                       html.input({
-                                                                                                                      "type": "password",
-                                                                                                                      "class": "form-control form-control-user",
-                                                                                                                      "id": "exampleInputPassword",
-                                                                                                                      "placeholder": "Password"
-                                                                                                                      })
-                                                                                                       ),
-                                                                                              html.div({
-                                                                                                           "class": "form-group"},
-                                                                                                       html.div({
-                                                                                                                    "class": "custom-control custom-checkbox small"},
-                                                                                                                html.input(
-                                                                                                                    {
-                                                                                                                        "type": "checkbox",
-                                                                                                                        "class": "custom-control-input",
-                                                                                                                        "id": "customCheck"}),
-                                                                                                                html.label(
-                                                                                                                    {
-                                                                                                                        "class": "custom-control-label",
-                                                                                                                        "for": "customCheck"},
-                                                                                                                    "Remember Me")
-                                                                                                                ),
-                                                                                                       ),
-                                                                                              html.a({
-                                                                                                         "href": "index.html",
-                                                                                                         "class": "btn btn-primary btn-user btn-block"},
-                                                                                                     "Login"),
-                                                                                              html.hr(),
-                                                                                              html.a({
-                                                                                                         "href": "index.html",
-                                                                                                         "class": "btn btn-google btn-user btn-block"},
-                                                                                                     html.i({
-                                                                                                                "class": "fab fa-google fa-fw"}),
-                                                                                                     "Login with Google"
-                                                                                                     ),
-                                                                                              html.a({
-                                                                                                         "href": "index.html",
-                                                                                                         "class": "btn btn-facebook btn-user btn-block"},
-                                                                                                     html.i({
-                                                                                                                "class": "fab fa-facebook-f fa-fw"}),
-                                                                                                     "Login with Facebook"
-                                                                                                     )
-                                                                                              ),
-                                                                                    html.hr(),
-                                                                                    html.div(
-                                                                                        {"class": "text-center"},
-                                                                                        html.a({"class": "small",
-                                                                                                "href": "#"},
-                                                                                               "Forgot Password?")
-                                                                                        ),
-                                                                                    html.div(
-                                                                                        {"class": "text-center"},
-                                                                                        html.a({"class": "small",
-                                                                                                "href": "#"},
-                                                                                               "Create an Account!")
-                                                                                        )
-                                                                                    )
-                                                                           )
-                                                                  )
-                                                         )
-                                                )
-                                       )
-                              )
-                     )
-        )
-
-    return html.div(
-        {
-            "style": {
-                "padding": "3rem",
-            }
-        },
+    return html.main(
         bootstrap_css,
+
         html.link({
             "href": "/css/sb-admin-2.min.css",
             "rel": "stylesheet"
@@ -246,6 +153,20 @@ def App():
             "rel": "stylesheet",
             "type": "text/css"
         }),
+        html.script(
+            {"src": "js/jquery.min.js"}),
+        html.script(
+            {"src": "js/bootstrap.bundle.min.js"}),
+        html.script(
+            {"src": "js/jquery.easing.min.js"}),
+        html.script(
+            {"src": "js/sb-admin-2.min.js"}),
+        html.script(
+            {"src": "js/Chart.min.js"}),
+        html.script(
+            {"src": "js/chart-area-demo.js"}),
+        html.script(
+            {"src": "js/chart-pie-demo.js"}),
         html.div(
             html.meta({
                 "charset": "utf-8"
@@ -279,287 +200,13 @@ def App():
 
         ),
         html.div({"id": "wrapper"},
-                 # sidebar
-                 html.ul({
-                     "class": "navbar-nav bg-gradient-primary sidebar sidebar-dark accordion",
-                     "id": "accordionSidebar"
-                 },
-                     # Sidebar - Brand
-                     html.a({
-                         "class": "sidebar-brand d-flex align-items-center justify-content-center",
-                         "href": "index.html"
-                     },
-                         html.div({
-                             "class": "sidebar-brand-icon rotate-n-15"
-                         },
-                             html.i({
-                                 "class": "fas fa-laugh-wink"
-                             })
-                     ),
-                         html.div({
-                             "class": "sidebar-brand-text mx-3"
-                         },
-                             "ADMINISTRADOR",
-                             html.sup()
-                     )
+                sidebar,
+                 topbar,
+
                  ),
+            login,
 
-                     # Divider
-                     html.hr({
-                         "class": "sidebar-divider my-0"
-                     }),
 
-                     # Nav Item - Dashboard
-                     html.li({
-                         "class": "nav-item active"
-                     },
-                         html.a({
-                             "class": "nav-link",
-                             "href": "index.html"
-                         },
-                             html.i({
-                                 "class": "fas fa-fw fa-tachometer-alt"
-                             }),
-                             "Dashboard"
-                     )
-                 ),
-
-                     # Divider
-                     html.hr({
-                         "class": "sidebar-divider"
-                     }),
-
-                     # Heading - Interface
-                     html.div({
-                         "class": "sidebar-heading"
-                     },
-                         "Interface"
-                 ),
-
-                     # Nav Item - Pages Collapse Menu (TIER1)
-                     html.li({
-                         "class": "nav-item"
-                     },
-                         html.a({
-                             "class": "nav-link collapsed",
-                             "href": "#",
-                             "data-toggle": "collapse",
-                             "data-target": "#collapseTwo",
-                             "aria-expanded": "true",
-                             "aria-controls": "collapseTwo"
-                         },
-                             html.i({
-                                 "class": "fas fa-fw fa-cog"
-                             }),
-                             "TIER1"
-                     ),
-                         html.div({
-                             "class": "collapse",
-                             "id": "collapseTwo",
-                             "aria-labelledby": "headingTwo",
-                             "data-parent": "#accordionSidebar"
-                         },
-                             html.div({
-                                 "class": "bg-white py-2 collapse-inner rounded"
-                             },
-                                 html.h6({
-                                     "class": "collapse-header"
-                                 },
-                                     "Custom Components:"
-                             ),
-                                 html.a({
-                                     "class": "collapse-item",
-                                     "href": "buttons.html"
-                                 },
-                                     "Compra"
-                             ),
-                                 html.a({
-                                     "class": "collapse-item",
-                                     "href": "cards.html"
-                                 },
-                                     "Pedidos"
-                             )
-                         )
-                     )
-                 ),
-
-                     # Nav Item - Pages Collapse Menu (TIER2)
-                     html.li({
-                         "class": "nav-item"
-                     },
-                         html.a({
-                             "class": "nav-link collapsed",
-                             "href": "#",
-                             "data-toggle": "collapse",
-                             "data-target": "#collapseUtilities",
-                             "aria-expanded": "true",
-                             "aria-controls": "collapseUtilities"
-                         },
-                             html.i({
-                                 "class": "fas fa-fw fa-wrench"
-                             }),
-                             "TIER2"
-                     ),
-                         html.div({
-                             "class": "collapse",
-                             "id": "collapseUtilities",
-                             "aria-labelledby": "headingUtilities",
-                             "data-parent": "#accordionSidebar"
-                         },
-                             html.div({
-                                 "class": "bg-white py-2 collapse-inner rounded"
-                             },
-                                 html.h6({
-                                     "class": "collapse-header"
-                                 },
-                                     "Custom Utilities:"
-                             ),
-                                 html.a({
-                                     "class": "collapse-item",
-                                     "href": "utilities-color.html"
-                                 },
-                                     "Colors"
-                             ),
-                                 html.a({
-                                     "class": "collapse-item",
-                                     "href": "utilities-border.html"
-                                 },
-                                     "Borders"
-                             ),
-                                 html.a({
-                                     "class": "collapse-item",
-                                     "href": "utilities-animation.html"
-                                 },
-                                     "Animations"
-                             ),
-                                 html.a({
-                                     "class": "collapse-item",
-                                     "href": "utilities-other.html"
-                                 },
-                                     "Other"
-                             )
-                         )
-                     )
-                 ),
-
-                     # Nav Item - Pages Collapse Menu (TIER3)
-                     html.li({
-                         "class": "nav-item"
-                     },
-                         html.a({
-                             "class": "nav-link collapsed",
-                             "href": "#",
-                             "data-toggle": "collapse",
-                             "data-target": "#collapseTIER3"
-                         },
-                             html.i({
-                                 "class": "fas fa-fw fa-cog"
-                             }),
-                             "TIER3"
-                     ),
-                         html.div({
-                             "class": "collapse",
-                             "id": "collapseTIER3",
-                             "aria-labelledby": "headingTwo",
-                             "data-parent": "#accordionSidebar"
-                         },
-                             html.div({
-                                 "class": "bg-white py-2 collapse-inner rounded"
-                             },
-                                 html.h6({
-                                     "class": "collapse-header"
-                                 },
-                                     "Custom Components:"
-                             ),
-                                 html.a({
-                                     "class": "collapse-item",
-                                     "href": "buttons.html"
-                                 },
-                                     "Buttons"
-                             ),
-                                 html.a({
-                                     "class": "collapse-item",
-                                     "href": "cards.html"
-                                 },
-                                     "Cards"
-                             )
-                         )
-                     )
-                 ),
-
-                     # Nav Item - Pages Collapse Menu (LOGISTICA)
-                     html.li({
-                         "class": "nav-item"
-                     },
-                         html.a({
-                             "class": "nav-link collapsed",
-                             "href": "#",
-                             "data-toggle": "collapse",
-                             "data-target": "#collapseLOGISTICA"
-                         },
-                             html.i({
-                                 "class": "fas fa-fw fa-cog"
-                             }),
-                             "LOGISTICA"
-                     ),
-                         html.div({
-                             "class": "collapse",
-                             "id": "collapseLOGISTICA",
-                             "aria-labelledby": "headingTwo",
-                             "data-parent": "#accordionSidebar"
-                         },
-                             html.div({
-                                 "class": "bg-white py-2 collapse-inner rounded"
-                             },
-                                 html.h6({
-                                     "class": "collapse-header"
-                                 },
-                                     "Custom Components:"
-                             ),
-                                 html.a({
-                                     "class": "collapse-item",
-                                     "href": "buttons.html"
-                                 },
-                                     "Buttons"
-                             ),
-                                 html.a({
-                                     "class": "collapse-item",
-                                     "href": "cards.html"
-                                 },
-                                     "Cards"
-                             )
-                         )
-                     )
-                 ),
-
-                     # Divider
-                     html.hr({
-                         "class": "sidebar-divider"
-                     }),
-
-                     # Heading - Addons
-                     html.div({
-                         "class": "sidebar-heading"
-                     },
-                         "Addons"
-                 )
-        )
-        ),
-        login_user(),
-        html.script(
-            {"src": "js/jquery.min.js"}),
-        html.script(
-            {"src": "js/bootstrap.bundle.min.js"}),
-        html.script(
-            {"src": "js/jquery.easing.min.js"}),
-        html.script(
-            {"src": "js/sb-admin-2.min.js"}),
-        html.script(
-            {"src": "js/Chart.min.js"}),
-        html.script(
-            {"src": "js/chart-area-demo.js"}),
-        html.script(
-            {"src": "js/chart-pie-demo.js"})
     )
 
 
