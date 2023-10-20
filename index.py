@@ -549,7 +549,7 @@ def App():
         html.script(
             {"src": "js/jquery.min.js"}),
         html.script(
-            {"src": "js/js/bootstrap.bundle.min.js"}),
+            {"src": "js/bootstrap.bundle.min.js"}),
         html.script(
             {"src": "js/jquery.easing.min.js"}),
         html.script(
