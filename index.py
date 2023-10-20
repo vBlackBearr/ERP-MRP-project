@@ -2,13 +2,19 @@ from fastapi import FastAPI
 from reactpy.backend.fastapi import configure
 from reactpy import component, html, use_state, use_effect
 from rawMaterialsCrud import rawMaterials
-
-from my_util import *
-
-import asyncio
 from controllerPartners import router
-import reactpy
+from fastapi.staticfiles import StaticFiles
 from api import getPartners, postPartner, deletePartner, updatePartner
+from my_util import *
+import asyncio
+import reactpy
+
+app = FastAPI()
+# por buenas prácticas según se montan así los recursos en fastapi, yo digo que le hacen a la mamada nomás
+#x2
+
+app.mount("/css", StaticFiles(directory="css"), name="css")
+app.mount("/js", StaticFiles(directory="js"), name="js")
 
 
 @component
@@ -19,7 +25,7 @@ def App():
 
     bootstrap_css = html.link({
         "rel": "stylesheet",
-        "href": "https://elpatronhh.github.io/portfolio/bootstrap.min.css"
+        "href": "css/bootstrap.min.css"
     })
 
     partners, set_partners = use_state([])
@@ -232,11 +238,11 @@ def App():
         },
         bootstrap_css,
         html.link({
-            "href": "https://elpatronhh.github.io/portfolio/sb-admin-2.min.css",
+            "href": "/css/sb-admin-2.min.css",
             "rel": "stylesheet"
         }),
         html.link({
-            "href": "https://elpatronhh.github.io/portfolio/all.min.css",
+            "href": "/css/all.min.css",
             "rel": "stylesheet",
             "type": "text/css"
         }),
@@ -541,24 +547,21 @@ def App():
         ),
         login_user(),
         html.script(
-            {"src": "https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/jquery/jquery.min.js"}),
+            {"src": "js/jquery.min.js"}),
         html.script(
-            {"src": "https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/bootstrap/js/bootstrap.bundle.min.js"}),
+            {"src": "js/js/bootstrap.bundle.min.js"}),
         html.script(
-            {"src": "https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/jquery-easing/jquery.easing.min.js"}),
+            {"src": "js/jquery.easing.min.js"}),
         html.script(
-            {"src": "https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/js/sb-admin-2.min.js"}),
+            {"src": "js/sb-admin-2.min.js"}),
         html.script(
-            {"src": "https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/vendor/chart.js/Chart.min.js"}),
+            {"src": "js/Chart.min.js"}),
         html.script(
-            {"src": "https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/js/demo/chart-area-demo.js"}),
+            {"src": "js/chart-area-demo.js"}),
         html.script(
-            {"src": "https://elpatronhh.github.io/portfolio/startbootstrap-sb-admin-2-gh-pages/js/demo/chart-pie-demo.js"})
-
+            {"src": "js/chart-pie-demo.js"})
     )
 
-
-app = FastAPI()
 
 app.include_router(router)
 
