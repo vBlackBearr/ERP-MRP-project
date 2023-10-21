@@ -1,19 +1,18 @@
 from fastapi import FastAPI
 from reactpy.backend.fastapi import configure
-from reactpy import component, html, use_state, use_effect
-from rawMaterialsCrud import rawMaterials
-from controllerPartners import router
+from reactpy import component, use_state, use_effect
+from components.cruds.views.rawMaterialsCrud import rawMaterials
+from components.cruds.controllers.controllerPartners import router
 from fastapi.staticfiles import StaticFiles
 from api import getPartners, postPartner, deletePartner, updatePartner
 from my_util import *
 import asyncio
 import reactpy
 
-
-#componentes
-from componentes.topbar import topbar
-from componentes.login import login
-from componentes.sidebar import sidebar
+# components
+from components.topbar import topbar
+from components.login import login
+from components.sidebar import sidebar
 
 
 app = FastAPI()
@@ -30,11 +29,6 @@ app.mount("/js", StaticFiles(directory="js"), name="js")
 def App():
     HERE = Path(__file__)
     DATA_PATH = HERE.parent / "data.json"
-
-    bootstrap_css = html.link({
-        "rel": "stylesheet",
-        "href": "css/bootstrap.min.css"
-    })
 
     partners, set_partners = use_state([])
     name, set_name = use_state("")
@@ -142,7 +136,6 @@ def App():
         setpage(rawMaterials())
 
     return html.main(
-        bootstrap_css,
 
         html.link({
             "href": "/css/sb-admin-2.min.css",

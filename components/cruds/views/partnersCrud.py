@@ -4,7 +4,7 @@ from reactpy.backend.fastapi import configure
 from reactpy import component, html, use_state, use_effect
  
 import asyncio
-from controllerPartners import router
+from components.cruds.controllers.controllerPartners import router
 import reactpy
 from api import getPartners, postPartner, deletePartner, updatePartner
 

@@ -1,8 +1,6 @@
 from reactpy import component, html, run
 from reactpy_router import route, simple
-from reactpy.backend.fastapi import configure
-from rawMaterialsCrud import rawMaterials
-from partnersCrud import partners
+from components.cruds.views.partnersCrud import partners
 
 @component
 def root():
