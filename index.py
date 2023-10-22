@@ -11,10 +11,12 @@ from reactpy_router import route, simple
 from content.screens.index import Index
 from content.screens.Partners import Partners
 from content.screens.RawMaterials import RawMaterials
+from content.screens.Products import Products
 
 #routers
 from content.cruds.controllers.controllerPartners import router as router_partners
 from content.cruds.controllers.controllerRawMaterials import router as router_raw_materials
+from content.cruds.controllers.controllerProducts import router as router_products
 
 app = FastAPI()
 # por buenas prácticas según se montan así los recursos en fastapi, yo digo que le hacen a la mamada nomás
@@ -32,6 +34,7 @@ def App():
         route("/", Index(context)),
         route("/partners", Partners(context)),
         route("/raw_materials", RawMaterials(context)),
+        route("/products", Products(context)),
         route("/kk", html.h1("kk Page 🏠")),
         route("*", html.h1("Missing Link 🔗‍💥"))
     )
@@ -39,5 +42,7 @@ def App():
 
 app.include_router(router_partners)
 app.include_router(router_raw_materials)
+app.include_router(router_products)
+
 
 configure(app, App)

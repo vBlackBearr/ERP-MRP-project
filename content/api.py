@@ -182,7 +182,7 @@ import httpx
 
 async def getProducts():
     async with httpx.AsyncClient() as client:
-        response = await client.get("http://localhost:8000/products")
+        response = await client.get("http://localhost:8000/backend/products")
 
     if response.status_code == 200:
         result = response.json()
@@ -191,7 +191,7 @@ async def getProducts():
 
 async def getProduct(product_id):
     async with httpx.AsyncClient() as client:
-        response = await client.get(f"http://localhost:8000/products/{product_id}")
+        response = await client.get(f"http://localhost:8000/backend/products/{product_id}")
 
     if response.status_code == 200:
         result = response.json()
@@ -202,7 +202,7 @@ async def getProduct(product_id):
 
 async def postProduct(new_product):
     async with httpx.AsyncClient() as client:
-        response = await client.post("http://localhost:8000/products", json=new_product)
+        response = await client.post("http://localhost:8000/backend/products", json=new_product)
 
     if response.status_code == 200:
         result = response.json()
@@ -213,7 +213,7 @@ async def postProduct(new_product):
 
 async def updateProduct(product_id, updated_product):
     async with httpx.AsyncClient() as client:
-        response = await client.put(f"http://localhost:8000/products/{product_id}", json=updated_product)
+        response = await client.put(f"http://localhost:8000/backend/products/{product_id}", json=updated_product)
 
     if response.status_code == 200:
         result = response.json()
@@ -224,7 +224,7 @@ async def updateProduct(product_id, updated_product):
 
 async def deleteProduct(product_id):
     async with httpx.AsyncClient() as client:
-        response = await client.delete(f"http://localhost:8000/products/{product_id}")
+        response = await client.delete(f"http://localhost:8000/backend/products/{product_id}")
 
     if response.status_code == 200:
         return True  # Éxito en la eliminación

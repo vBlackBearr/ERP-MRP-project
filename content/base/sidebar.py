@@ -49,47 +49,47 @@ sidebar = html.ul({
         "class": "sidebar-divider"
     }),
 
-    # Heading - Addons
-    html.div({
-        "class": "sidebar-heading"
-    },
-        "Addons"
-    ),
-
-    html.li({
-        "class": "nav-item active"
-    },
-        html.a({
-            "class": "nav-link",
-            "href": "partners"
-        },
-            html.i({
-                "class": "fas fa-fw fa-table"
-            }),
-            html.span("Partners")
-        ),
-
-    ),
-
-    html.li({
-        "class": "nav-item active"
-    },
-        html.a({
-            "class": "nav-link",
-            "href": "raw_materials"
-        },
-            html.i({
-                "class": "fas fa-fw fa-table"
-            }),
-            html.span("Raw Materials")
-        ),
-
-    ),
-
-    # Divider
-    html.hr({
-        "class": "sidebar-divider my-0"
-    }),
+    # # Heading - Addons
+    # html.div({
+    #     "class": "sidebar-heading"
+    # },
+    #     "Addons"
+    # ),
+    #
+    # html.li({
+    #     "class": "nav-item active"
+    # },
+    #     html.a({
+    #         "class": "nav-link",
+    #         "href": "partners"
+    #     },
+    #         html.i({
+    #             "class": "fas fa-fw fa-table"
+    #         }),
+    #         html.span("Partners")
+    #     ),
+    #
+    # ),
+    #
+    # html.li({
+    #     "class": "nav-item active"
+    # },
+    #     html.a({
+    #         "class": "nav-link",
+    #         "href": "raw_materials"
+    #     },
+    #         html.i({
+    #             "class": "fas fa-fw fa-table"
+    #         }),
+    #         html.span("Raw Materials")
+    #     ),
+    #
+    # ),
+    #
+    # # Divider
+    # html.hr({
+    #     "class": "sidebar-divider my-0"
+    # }),
 
     # Heading - Interface
     html.div({
@@ -113,7 +113,7 @@ sidebar = html.ul({
             html.i({
                 "class": "fas fa-fw fa-cog"
             }),
-            "TIER1"
+            "Inventario"
         ),
         html.div({
             "class": "collapse",
@@ -131,15 +131,15 @@ sidebar = html.ul({
                 ),
                 html.a({
                     "class": "collapse-item",
-                    "href": "buttons.html"
+                    "href": "products"
                 },
-                    "Compra"
+                    "Productos"
                 ),
                 html.a({
                     "class": "collapse-item",
-                    "href": "cards.html"
+                    "href": "raw_materials"
                 },
-                    "Pedidos"
+                    "Raw Materials"
                 )
             )
         )

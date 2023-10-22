@@ -7,13 +7,10 @@ from content.cruds.controllers.controllerProducts import router  # Asegúrate de
 import reactpy
 from content.api import getProducts, postProduct, deleteProduct  # Asegúrate de importar las funciones correctas
 
-bootstrap_css = html.link({
-    "rel": "stylesheet",
-    "href": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-})
+
 
 @component
-def App():
+def ProductsCrud():
     products, set_products = use_state([])
     name, set_name = use_state("")
     description, set_description = use_state("")
@@ -116,7 +113,6 @@ def App():
                 "padding": "3rem",
             }
         },
-        bootstrap_css,
         html.form(
             {
                 "on_submit": handle_submit
@@ -146,8 +142,3 @@ def App():
         )
     )
 
-app = FastAPI()
-
-app.include_router(router)
-
-configure(app, App)
