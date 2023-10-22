@@ -12,6 +12,7 @@ from content.screens.index import Index
 from content.screens.Partners import Partners
 from content.screens.RawMaterials import RawMaterials
 from content.screens.Products import Products
+from content.screens.Sales import Sales
 
 #routers
 from content.cruds.controllers.controllerPartners import router as router_partners
@@ -36,6 +37,7 @@ def App():
         route("/raw_materials", RawMaterials(context)),
         route("/products", Products(context)),
         route("/kk", html.h1("kk Page 🏠")),
+        route("/sales", Sales(context)),
         route("*", html.h1("Missing Link 🔗‍💥"))
     )
 

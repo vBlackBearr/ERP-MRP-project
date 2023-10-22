@@ -178,9 +178,9 @@ sidebar = html.ul({
                 ),
                 html.a({
                     "class": "collapse-item",
-                    "href": "utilities-color.html"
+                    "href": "sales"
                 },
-                    "Colors"
+                    "Ventas"
                 ),
                 html.a({
                     "class": "collapse-item",

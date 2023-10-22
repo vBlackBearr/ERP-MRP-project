@@ -7,14 +7,10 @@ from content.cruds.controllers.controllerSales import router  # Cambia el import
 import reactpy
 from content.api import getSales, postSale, deleteSale  # Cambia los nombres de las funciones de API
 
-bootstrap_css = html.link({
-    "rel": "stylesheet",
-    "href": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-})
 
 
 @component
-def App():
+def SalesCrud():
     sales, set_sales = use_state([])  # Cambia el nombre de las variables
     date, set_date = use_state("")  # Cambia el nombre de las variables
     total, set_total = use_state("")  # Cambia el nombre de las variables
@@ -117,7 +113,6 @@ def App():
                 "padding": "3rem",
             }
         },
-        bootstrap_css,
         html.form(
             {
                 "on_submit": handle_submit
@@ -151,4 +146,4 @@ app = FastAPI()
 
 app.include_router(router)
 
-configure(app, App)
+configure(app, SalesCrud)
