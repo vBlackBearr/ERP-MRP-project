@@ -14,7 +14,7 @@ bootstrap_css = html.link({
 
 
 @component
-def rawMaterials():
+def RawMaterials():
     raw_materials, set_raw_materials = use_state([])  # Cambia el nombre de las variables
     name, set_name = use_state("")  # Cambia el nombre de las variables
     description, set_description = use_state("")  # Cambia el nombre de las variables
@@ -163,4 +163,4 @@ app = FastAPI()
 
 app.include_router(router)
 
-configure(app, rawMaterials)
+configure(app, RawMaterials)
