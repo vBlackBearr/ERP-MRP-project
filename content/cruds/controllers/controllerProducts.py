@@ -7,13 +7,13 @@ from content.cruds.models.models import Product
 router = APIRouter()
 
 
-@router.get("/products")
+@router.get("/backend/products")
 def get_products(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
     products = db.query(Product).offset(skip).limit(limit).all()
     return products
 
 
-@router.post("/products")
+@router.post("/backend/products")
 def create_product(product: ProductCreate, db: Session = Depends(get_db)):
     db_product = Product(**product.dict())
     db.add(db_product)
@@ -22,7 +22,7 @@ def create_product(product: ProductCreate, db: Session = Depends(get_db)):
     return db_product
 
 
-@router.get("/products/{product_id}")
+@router.get("/backend/products/{product_id}")
 def get_product(product_id: int, db: Session = Depends(get_db)):
     product = db.query(Product).filter(Product.id == product_id).first()
     if not product:
@@ -30,7 +30,7 @@ def get_product(product_id: int, db: Session = Depends(get_db)):
     return product
 
 
-@router.put("/products/{product_id}")
+@router.put("/backend/products/{product_id}")
 def update_product(product_id: int, product_data: ProductUpdate, db: Session = Depends(get_db)):
     product = db.query(Product).filter(Product.id == product_id).first()
     if not product:
@@ -44,7 +44,7 @@ def update_product(product_id: int, product_data: ProductUpdate, db: Session = D
     return product
 
 
-@router.delete("/products/{product_id}")
+@router.delete("/backend/products/{product_id}")
 def delete_product(product_id: int, db: Session = Depends(get_db)):
     product = db.query(Product).filter(Product.id == product_id).first()
     if not product:

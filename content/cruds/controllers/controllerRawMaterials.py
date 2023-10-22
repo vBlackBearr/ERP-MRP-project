@@ -6,13 +6,13 @@ from content.cruds.models.models import RawMaterial
 router = APIRouter()
 
 
-@router.get("/raw_materials")
+@router.get("/backend/raw_materials")
 def get_raw_materials(skip: int = 0, limit: int = 10, db: SessionLocal = Depends(get_db)):
     raw_materials = db.query(RawMaterial).offset(skip).limit(limit).all()
     return raw_materials
 
 
-@router.post("/raw_materials")
+@router.post("/backend/raw_materials")
 def create_raw_material(raw_material_data: dict, db: Session = Depends(get_db)):
     new_raw_material = RawMaterial(**raw_material_data)
     db.add(new_raw_material)
@@ -21,7 +21,7 @@ def create_raw_material(raw_material_data: dict, db: Session = Depends(get_db)):
     return new_raw_material
 
 
-@router.get("/raw_materials/{raw_material_id}")
+@router.get("/backend/raw_materials/{raw_material_id}")
 def get_raw_material(raw_material_id: int, db: Session = Depends(get_db)):
     raw_material = db.query(RawMaterial).filter(RawMaterial.id == raw_material_id).first()
     if not raw_material:
@@ -29,7 +29,7 @@ def get_raw_material(raw_material_id: int, db: Session = Depends(get_db)):
     return raw_material
 
 
-@router.put("/raw_materials/{raw_material_id}")
+@router.put("/backend/raw_materials/{raw_material_id}")
 def update_raw_material(raw_material_id: int, raw_material_data: dict, db: Session = Depends(get_db)):
     raw_material = db.query(RawMaterial).filter(RawMaterial.id == raw_material_id).first()
     if not raw_material:
@@ -43,7 +43,7 @@ def update_raw_material(raw_material_id: int, raw_material_data: dict, db: Sessi
     return raw_material
 
 
-@router.delete("/raw_materials/{raw_material_id}")
+@router.delete("/backend/raw_materials/{raw_material_id}")
 def delete_raw_material(raw_material_id: int, db: Session = Depends(get_db)):
     raw_material = db.query(RawMaterial).filter(RawMaterial.id == raw_material_id).first()
     if not raw_material:
