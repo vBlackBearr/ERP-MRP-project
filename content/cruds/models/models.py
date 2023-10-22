@@ -19,7 +19,9 @@ class Partner(Base):
     props = Column(JSON)
     enabled = Column(Boolean)
 
-    raw_materials = relationship("RawMaterial", back_populates="partner")
+    raw_materials_partners = relationship("RawMaterialPartner", back_populates="partner")
+
+
 
 
 class RawMaterial(Base):
@@ -30,22 +32,35 @@ class RawMaterial(Base):
     description = Column(String)
     partner_id = Column(Integer, ForeignKey('partners.id'))
     props = Column(JSON)
+    stock = Column(Integer)
     enabled = Column(Boolean)
-    partner = relationship("Partner", back_populates="raw_materials")
-    raw_material_stock = relationship("RawMaterialStock", back_populates="raw_material")
+    raw_materials_partners = relationship("Partner", back_populates="raw_material")
     bom = relationship("BOM", back_populates="raw_material")
 
 
-class RawMaterialStock(Base):
-    __tablename__ = "raw_materials_stock"
+class RawMaterialPartner(Base):
+    __tablename__ = "raw_materials_partners"
 
     id = Column(Integer, primary_key=True, index=True)
     raw_material_id = Column(Integer, ForeignKey('raw_materials.id'))
-    stock = Column(Integer)
+    partner_id = Column(Integer, ForeignKey('partners.id'))
     props = Column(JSON)
     enabled = Column(Boolean)
+    partner = relationship("Partner", back_populates="raw_materials_partners")
+    raw_material = relationship("RawMaterial", back_populates="raw_materials_partners")
 
-    raw_material = relationship("RawMaterial", back_populates="raw_material_stock")
+
+
+# class RawMaterialStock(Base):
+#     __tablename__ = "raw_materials_stock"
+#
+#     id = Column(Integer, primary_key=True, index=True)
+#     raw_material_id = Column(Integer, ForeignKey('raw_materials.id'))
+#     stock = Column(Integer)
+#     props = Column(JSON)
+#     enabled = Column(Boolean)
+#
+#     raw_material = relationship("RawMaterial", back_populates="raw_material_stock")
 
 
 class Product(Base):
@@ -55,23 +70,23 @@ class Product(Base):
     name = Column(String, nullable=False)
     description = Column(String)
     props = Column(JSON)
+    stock = Column(Integer)
     enabled = Column(Boolean)
 
-    product_stock = relationship("ProductStock", back_populates="product")
     bom = relationship("BOM", back_populates="product")
     product_sale = relationship("ProductSale", back_populates="product")
 
 
 
-class ProductStock(Base):
-    __tablename__ = "products_stock"
-
-    id = Column(Integer, primary_key=True, index=True)
-    product_id = Column(Integer, ForeignKey('products.id'))
-    stock = Column(Integer)
-    props = Column(JSON)
-    enabled = Column(Boolean)
-    product = relationship("Product", back_populates="product_stock")
+# class ProductStock(Base):
+#     __tablename__ = "products_stock"
+#
+#     id = Column(Integer, primary_key=True, index=True)
+#     product_id = Column(Integer, ForeignKey('products.id'))
+#     stock = Column(Integer)
+#     props = Column(JSON)
+#     enabled = Column(Boolean)
+#     product = relationship("Product", back_populates="product_stock")
 
 
 class BOM(Base):
