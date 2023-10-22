@@ -119,7 +119,7 @@ async def deleteRawMaterial(raw_material_id):
 #
 # async def getRawMaterialsStock():
 #     async with httpx.AsyncClient() as client:
-#         response = await client.get("http://localhost:8000/raw_materials_stock")
+#         response = await client.get("http://localhost:8000/backend/raw_materials_stock")
 #
 #     if response.status_code == 200:
 #         result = response.json()
@@ -130,7 +130,7 @@ async def deleteRawMaterial(raw_material_id):
 #
 # async def getRawMaterialStock(raw_material_stock_id):
 #     async with httpx.AsyncClient() as client:
-#         response = await client.get(f"http://localhost:8000/raw_materials_stock/{raw_material_stock_id}")
+#         response = await client.get(f"http://localhost:8000/backend/raw_materials_stock/{raw_material_stock_id}")
 #
 #     if response.status_code == 200:
 #         result = response.json()
@@ -141,7 +141,7 @@ async def deleteRawMaterial(raw_material_id):
 #
 # async def postRawMaterialStock(new_raw_material_stock):
 #     async with httpx.AsyncClient() as client:
-#         response = await client.post("http://localhost:8000/raw_materials_stock", json=new_raw_material_stock)
+#         response = await client.post("http://localhost:8000/backend/raw_materials_stock", json=new_raw_material_stock)
 #
 #     if response.status_code == 200:
 #         result = response.json()
@@ -152,7 +152,7 @@ async def deleteRawMaterial(raw_material_id):
 #
 # async def updateRawMaterialStock(raw_material_stock_id, updated_raw_material_stock):
 #     async with httpx.AsyncClient() as client:
-#         response = await client.put(f"http://localhost:8000/raw_materials_stock/{raw_material_stock_id}",
+#         response = await client.put(f"http://localhost:8000/backend/raw_materials_stock/{raw_material_stock_id}",
 #                                     json=updated_raw_material_stock)
 #
 #     if response.status_code == 200:
@@ -164,7 +164,7 @@ async def deleteRawMaterial(raw_material_id):
 #
 # async def deleteRawMaterialStock(raw_material_stock_id):
 #     async with httpx.AsyncClient() as client:
-#         response = await client.delete(f"http://localhost:8000/raw_materials_stock/{raw_material_stock_id}")
+#         response = await client.delete(f"http://localhost:8000/backend/raw_materials_stock/{raw_material_stock_id}")
 #
 #     if response.status_code == 200:
 #         return True  # Éxito en la eliminación
@@ -239,7 +239,7 @@ async def deleteProduct(product_id):
 #
 async def getProductsStock():
     async with httpx.AsyncClient() as client:
-        response = await client.get("http://localhost:8000/products_stock")
+        response = await client.get("http://localhost:8000/backend/products_stock")
 
     if response.status_code == 200:
         result = response.json()
@@ -250,7 +250,7 @@ async def getProductsStock():
 
 async def getProductStock(product_stock_id):
     async with httpx.AsyncClient() as client:
-        response = await client.get(f"http://localhost:8000/products_stock/{product_stock_id}")
+        response = await client.get(f"http://localhost:8000/backend/products_stock/{product_stock_id}")
 
     if response.status_code == 200:
         result = response.json()
@@ -261,7 +261,7 @@ async def getProductStock(product_stock_id):
 
 async def postProductStock(new_product_stock):
     async with httpx.AsyncClient() as client:
-        response = await client.post("http://localhost:8000/products_stock", json=new_product_stock)
+        response = await client.post("http://localhost:8000/backend/products_stock", json=new_product_stock)
 
     if response.status_code == 200:
         result = response.json()
@@ -272,7 +272,7 @@ async def postProductStock(new_product_stock):
 
 async def updateProductStock(product_stock_id, updated_product_stock):
     async with httpx.AsyncClient() as client:
-        response = await client.put(f"http://localhost:8000/products_stock/{product_stock_id}",
+        response = await client.put(f"http://localhost:8000/backend/products_stock/{product_stock_id}",
                                     json=updated_product_stock)
 
     if response.status_code == 200:
@@ -284,7 +284,7 @@ async def updateProductStock(product_stock_id, updated_product_stock):
 
 async def deleteProductStock(product_stock_id):
     async with httpx.AsyncClient() as client:
-        response = await client.delete(f"http://localhost:8000/products_stock/{product_stock_id}")
+        response = await client.delete(f"http://localhost:8000/backend/products_stock/{product_stock_id}")
 
     if response.status_code == 200:
         return True  # Éxito en la eliminación
@@ -299,7 +299,7 @@ async def deleteProductStock(product_stock_id):
 #
 async def getBOMs():
     async with httpx.AsyncClient() as client:
-        response = await client.get("http://localhost:8000/bom")
+        response = await client.get("http://localhost:8000/backend/bom")
 
     if response.status_code == 200:
         result = response.json()
@@ -310,7 +310,7 @@ async def getBOMs():
 
 async def getBOM(bom_id):
     async with httpx.AsyncClient() as client:
-        response = await client.get(f"http://localhost:8000/bom/{bom_id}")
+        response = await client.get(f"http://localhost:8000/backend/bom/{bom_id}")
 
     if response.status_code == 200:
         result = response.json()
@@ -321,7 +321,7 @@ async def getBOM(bom_id):
 
 async def postBOM(new_bom):
     async with httpx.AsyncClient() as client:
-        response = await client.post("http://localhost:8000/bom", json=new_bom)
+        response = await client.post("http://localhost:8000/backend/bom", json=new_bom)
 
     if response.status_code == 200:
         result = response.json()
@@ -332,7 +332,7 @@ async def postBOM(new_bom):
 
 async def updateBOM(bom_id, updated_bom):
     async with httpx.AsyncClient() as client:
-        response = await client.put(f"http://localhost:8000/bom/{bom_id}", json=updated_bom)
+        response = await client.put(f"http://localhost:8000/backend/bom/{bom_id}", json=updated_bom)
 
     if response.status_code == 200:
         result = response.json()
@@ -343,7 +343,7 @@ async def updateBOM(bom_id, updated_bom):
 
 async def deleteBOM(bom_id):
     async with httpx.AsyncClient() as client:
-        response = await client.delete(f"http://localhost:8000/bom/{bom_id}")
+        response = await client.delete(f"http://localhost:8000/backend/bom/{bom_id}")
 
     if response.status_code == 200:
         return True  # Éxito en la eliminación
@@ -358,7 +358,7 @@ async def deleteBOM(bom_id):
 #
 async def getSales():
     async with httpx.AsyncClient() as client:
-        response = await client.get("http://localhost:8000/sales")
+        response = await client.get("http://localhost:8000/backend/sales")
 
     if response.status_code == 200:
         result = response.json()
@@ -369,7 +369,7 @@ async def getSales():
 
 async def getSale(sale_id):
     async with httpx.AsyncClient() as client:
-        response = await client.get(f"http://localhost:8000/sales/{sale_id}")
+        response = await client.get(f"http://localhost:8000/backend/sales/{sale_id}")
 
     if response.status_code == 200:
         result = response.json()
@@ -380,7 +380,7 @@ async def getSale(sale_id):
 
 async def postSale(new_sale):
     async with httpx.AsyncClient() as client:
-        response = await client.post("http://localhost:8000/sales", json=new_sale)
+        response = await client.post("http://localhost:8000/backend/sales", json=new_sale)
 
     if response.status_code == 200:
         result = response.json()
@@ -391,7 +391,7 @@ async def postSale(new_sale):
 
 async def updateSale(sale_id, updated_sale):
     async with httpx.AsyncClient() as client:
-        response = await client.put(f"http://localhost:8000/sales/{sale_id}", json=updated_sale)
+        response = await client.put(f"http://localhost:8000/backend/sales/{sale_id}", json=updated_sale)
 
     if response.status_code == 200:
         result = response.json()
@@ -402,7 +402,7 @@ async def updateSale(sale_id, updated_sale):
 
 async def deleteSale(sale_id):
     async with httpx.AsyncClient() as client:
-        response = await client.delete(f"http://localhost:8000/sales/{sale_id}")
+        response = await client.delete(f"http://localhost:8000/backend/sales/{sale_id}")
 
     if response.status_code == 200:
         return True  # Éxito en la eliminación
@@ -418,7 +418,7 @@ async def deleteSale(sale_id):
 #
 async def getProductSales():
     async with httpx.AsyncClient() as client:
-        response = await client.get("http://localhost:8000/products_sales")
+        response = await client.get("http://localhost:8000/backend/products_sales")
 
     if response.status_code == 200:
         result = response.json()
@@ -429,7 +429,7 @@ async def getProductSales():
 
 async def get_product_sale(product_sale_id):
     async with httpx.AsyncClient() as client:
-        response = await client.get(f"http://localhost:8000/products_sales/{product_sale_id}")
+        response = await client.get(f"http://localhost:8000/backend/products_sales/{product_sale_id}")
 
     if response.status_code == 200:
         result = response.json()
@@ -440,7 +440,7 @@ async def get_product_sale(product_sale_id):
 
 async def postProductSale(new_product_sale):
     async with httpx.AsyncClient() as client:
-        response = await client.post("http://localhost:8000/products_sales", json=new_product_sale)
+        response = await client.post("http://localhost:8000/backend/products_sales", json=new_product_sale)
 
     if response.status_code == 200:
         result = response.json()
@@ -451,7 +451,7 @@ async def postProductSale(new_product_sale):
 
 async def updateProductSale(product_sale_id, updated_product_sale):
     async with httpx.AsyncClient() as client:
-        response = await client.put(f"http://localhost:8000/products_sales/{product_sale_id}", json=updated_product_sale)
+        response = await client.put(f"http://localhost:8000/backend/products_sales/{product_sale_id}", json=updated_product_sale)
 
     if response.status_code == 200:
         result = response.json()
@@ -462,7 +462,7 @@ async def updateProductSale(product_sale_id, updated_product_sale):
 
 async def deleteProductSale(product_sale_id):
     async with httpx.AsyncClient() as client:
-        response = await client.delete(f"http://localhost:8000/products_sales/{product_sale_id}")
+        response = await client.delete(f"http://localhost:8000/backend/products_sales/{product_sale_id}")
 
     if response.status_code == 200:
         return True  # Éxito en la eliminación
