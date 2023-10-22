@@ -34,7 +34,7 @@ class RawMaterial(Base):
     props = Column(JSON)
     stock = Column(Integer)
     enabled = Column(Boolean)
-    raw_materials_partners = relationship("Partner", back_populates="raw_material")
+    raw_materials_partners = relationship("RawMaterialPartner", back_populates="raw_material")
     bom = relationship("BOM", back_populates="raw_material")
 
 

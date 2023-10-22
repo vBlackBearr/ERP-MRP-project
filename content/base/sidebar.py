@@ -49,6 +49,43 @@ sidebar = html.ul({
         "class": "sidebar-divider"
     }),
 
+    # Heading - Addons
+    html.div({
+        "class": "sidebar-heading"
+    },
+        "Addons"
+    ),
+
+    html.li({
+        "class": "nav-item active"
+    },
+        html.a({
+            "class": "nav-link",
+            "href": "partners"
+        },
+            html.i({
+                "class": "fas fa-fw fa-table"
+            }),
+            html.span("Partners")
+        ),
+
+    ),
+
+    html.li({
+        "class": "nav-item active"
+    },
+        html.a({
+            "class": "nav-link",
+            "href": "raw_materials"
+        },
+            html.i({
+                "class": "fas fa-fw fa-table"
+            }),
+            html.span("Raw Materials")
+        ),
+
+    ),
+
     # Heading - Interface
     html.div({
         "class": "sidebar-heading"
@@ -257,24 +294,4 @@ sidebar = html.ul({
         "class": "sidebar-divider"
     }),
 
-    # Heading - Addons
-    html.div({
-        "class": "sidebar-heading"
-    },
-        "Addons"
-    ),
-
-    html.li({
-        "class": "nav-item active"
-    },
-        html.a({
-            "class": "nav-link",
-            "href": "partners"
-        },
-            html.i({
-                "class": "fas fa-fw fa-table"
-            }),
-            html.span("Partners")
-        )
-    )
 )
