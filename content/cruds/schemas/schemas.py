@@ -1,7 +1,6 @@
 from pydantic import BaseModel
 from typing import Dict
 
-
 class PartnerBase(BaseModel):
     name: str
     details: str
@@ -9,7 +8,6 @@ class PartnerBase(BaseModel):
     api_endpoint: str
     props: dict
     enabled: bool
-
 
 class PartnerCreate(PartnerBase):
     pass
@@ -24,8 +22,6 @@ class Partner(PartnerBase):
 
     class Config:
         orm_mode = True
-
-
 #
 #
 #       Raw Material
@@ -36,6 +32,7 @@ class RawMaterialBase(BaseModel):
     description: str
     partner_id: int
     props: Dict
+    stock: int
     enabled: bool
 
 
@@ -61,7 +58,9 @@ class RawMaterial(RawMaterialBase):
 #
 class RawMaterialStockBase(BaseModel):
     raw_material_id: int
-    quantity: float
+    partner_id: int
+    props: dict
+    enabled: bool
 
 
 class RawMaterialStockCreate(RawMaterialStockBase):
@@ -88,6 +87,7 @@ class ProductBase(BaseModel):
     name: str
     description: str = None
     props: dict = {}
+    stock: int
     enabled: bool = True
 
 
@@ -111,6 +111,7 @@ class Product(ProductBase):
 #     Products Stock
 #
 #
+""""
 class ProductStockBase(BaseModel):
     product_id: int
     stock: int
@@ -132,7 +133,7 @@ class ProductStock(ProductStockBase):
     class Config:
         orm_mode = True
 
-
+"""
 #
 #
 #        BOM
@@ -167,7 +168,7 @@ class BOM(BOMBase):
 #
 #
 class SaleBase(BaseModel):
-    date: str  # Puedes cambiar el tipo de datos a DateTime si prefieres
+    date: str  
     total: float
     props: dict
     enabled: bool
