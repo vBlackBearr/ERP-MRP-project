@@ -145,64 +145,20 @@ sidebar = html.ul({
         )
     ),
 
-    # Nav Item - Pages Collapse Menu (TIER2)
     html.li({
-        "class": "nav-item"
-    },
-        html.a({
-            "class": "nav-link collapsed",
-            "href": "#",
-            "data-toggle": "collapse",
-            "data-target": "#collapseUtilities",
-            "aria-expanded": "true",
-            "aria-controls": "collapseUtilities"
+            "class": "nav-item active"
         },
-            html.i({
-                "class": "fas fa-fw fa-wrench"
-            }),
-            "TIER2"
-        ),
-        html.div({
-            "class": "collapse",
-            "id": "collapseUtilities",
-            "aria-labelledby": "headingUtilities",
-            "data-parent": "#accordionSidebar"
-        },
-            html.div({
-                "class": "bg-white py-2 collapse-inner rounded"
+            html.a({
+                "class": "nav-link",
+                "href": "sales"
             },
-                html.h6({
-                    "class": "collapse-header"
-                },
-                    "Custom Utilities:"
-                ),
-                html.a({
-                    "class": "collapse-item",
-                    "href": "sales"
-                },
-                    "Ventas"
-                ),
-                html.a({
-                    "class": "collapse-item",
-                    "href": "utilities-border.html"
-                },
-                    "Borders"
-                ),
-                html.a({
-                    "class": "collapse-item",
-                    "href": "utilities-animation.html"
-                },
-                    "Animations"
-                ),
-                html.a({
-                    "class": "collapse-item",
-                    "href": "utilities-other.html"
-                },
-                    "Other"
-                )
-            )
-        )
-    ),
+                html.i({
+                    "class": "fas fa-fw fa-table"
+                }),
+                html.span("Ventas")
+            ),
+
+        ),
 
     # Nav Item - Pages Collapse Menu (TIER3)
     html.li({
@@ -217,7 +173,7 @@ sidebar = html.ul({
             html.i({
                 "class": "fas fa-fw fa-cog"
             }),
-            "TIER3"
+            "Compras"
         ),
         html.div({
             "class": "collapse",

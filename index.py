@@ -18,6 +18,8 @@ from content.screens.Sales import Sales
 from content.cruds.controllers.controllerPartners import router as router_partners
 from content.cruds.controllers.controllerRawMaterials import router as router_raw_materials
 from content.cruds.controllers.controllerProducts import router as router_products
+from content.cruds.controllers.controllerSales import router as router_sales
+
 
 app = FastAPI()
 # por buenas prácticas según se montan así los recursos en fastapi, yo digo que le hacen a la mamada nomás
@@ -36,7 +38,6 @@ def App():
         route("/partners", Partners(context)),
         route("/raw_materials", RawMaterials(context)),
         route("/products", Products(context)),
-        route("/kk", html.h1("kk Page 🏠")),
         route("/sales", Sales(context)),
         route("*", html.h1("Missing Link 🔗‍💥"))
     )
@@ -45,6 +46,7 @@ def App():
 app.include_router(router_partners)
 app.include_router(router_raw_materials)
 app.include_router(router_products)
+app.include_router(router_sales)
 
 
 configure(app, App)
