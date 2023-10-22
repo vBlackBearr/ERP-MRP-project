@@ -91,30 +91,62 @@ def RawMaterialsCrud():
 
         asyncio.ensure_future(async_handler())
 
-    list_items = [html.li({
-        "key": index,
-        "class_name": "card card-body mb-2"
-    },
-        html.div(
-            html.p({
-                "class_name": "fw-bold h3"
-            }, f"{raw_material['name']} - {raw_material['description']}"),
-            html.p(
-                {
-                    "class_name": "text-muted"
-                },
-                f"{raw_material['id']}",
-            ),
-            html.button({
-                "on_click": lambda e, raw_mat=raw_material["id"]: delete_button_click_handler(e, raw_mat),
-                "class_name": "btn btn-danger"
-            }, "delete"),
-            html.button({
-                "on_click": lambda e, raw_material=raw_material: edit_button_click_handler(e, raw_material),
-                "class_name": "btn btn-secondary"
-            }, "edit"),
+
+    def create_table_row(raw_materials):
+        return html.tr(
+            html.td(raw_materials['name']),
+            html.td(raw_materials['description']),
+            html.td(raw_materials['props']),
+            html.td(raw_materials['props']),
+            html.td(
+                html.button({
+                    "on_click": lambda e, raw_materials_id=raw_materials["id"]: delete_button_click_handler(e, raw_materials_id),
+                    "class_name": "btn btn-danger"
+                }, "delete"),
+                html.button({
+                    "on_click": lambda e, raw_material=raw_materials: edit_button_click_handler(e, raw_material),
+                    "class_name": "btn btn-secondary"
+                }, "edit"),
+            )
         )
-    ) for index, raw_material in enumerate(raw_materials)]
+
+    list_items = html.div(
+        {"class": "card shadow mb-4"},
+        html.div(
+            {"class": "card-header py-3"},
+            html.h6({"class": "m-0 font-weight-bold text-primary"}, "DataTables Example"),
+        ),
+        html.div(
+            {"class": "card-body"},
+            html.div(
+                {"class": "table-responsive"},
+                html.table(
+                    {"class": "table table-bordered", "id": "dataTable", "width": "100%", "cellspacing": "0"},
+                    html.thead(
+                        html.tr(
+                            html.th("Nombre"),
+                            html.th("Descripcion"),
+                            html.th("Stock"),
+                            html.th("Proveedor"),
+                            html.th(""),
+                        ),
+                    ),
+                    html.tfoot(
+                        html.tr(
+                            html.th("Nombre"),
+                            html.th("Descripcion"),
+                            html.th("Stock"),
+                            html.th("Proveedor"),
+                            html.th(""),
+                        ),
+                    ),
+                    html.tbody(
+                        [create_table_row(row) for row in raw_materials]
+                    ),
+                ),
+            ),
+        ),
+    )
 
     return html.div(
         {
@@ -154,10 +186,9 @@ def RawMaterialsCrud():
                 "class_name": "btn btn-primary btn-block"
             }, "Create" if not editing else "Update"),
         ),
-        html.ul(
-            list_items
-        )
+        list_items
     )
+
 
 app = FastAPI()
 

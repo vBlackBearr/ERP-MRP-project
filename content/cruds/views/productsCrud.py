@@ -1,13 +1,7 @@
-from fastapi import FastAPI
-from reactpy.backend.fastapi import configure
 from reactpy import component, html, use_state, use_effect
-
 import asyncio
-from content.cruds.controllers.controllerProducts import router  # Asegúrate de importar el módulo correcto
 import reactpy
-from content.api import getProducts, postProduct, deleteProduct  # Asegúrate de importar las funciones correctas
-
-
+from content.api import getProducts, postProduct, deleteProduct, updateProduct
 
 @component
 def ProductsCrud():
@@ -15,7 +9,7 @@ def ProductsCrud():
     name, set_name = use_state("")
     description, set_description = use_state("")
     props, set_props = use_state({})
-    enabled, set_enabled = use_state(True)
+    stock, set_stock = use_state("")
 
     editing, set_editing = use_state(False)
     product_id, set_product_id = use_state(None)
@@ -36,30 +30,31 @@ def ProductsCrud():
                 "name": name,
                 "description": description,
                 "props": props,
-                "enabled": enabled
+                "stock": stock
             }
-
+            print(new_product)
             await postProduct(new_product)
             await fillItems()
         else:
-            updated_products = [product if product["id"] != product_id else {
+            updated_product = {
                 "name": name,
                 "description": description,
                 "props": props,
-                "enabled": enabled,
+                "stock": stock,
                 "id": product_id
-            } for product in products]
-            set_products(updated_products)
+            }
+            await updateProduct(product_id, updated_product)
+            await fillItems()
 
         set_name("")
         set_description("")
         set_props({})
-        set_enabled(True)
+        set_stock("")
         set_editing(False)
         set_product_id(None)
 
-    async def handle_delete(product_id):
-        await deleteProduct(product_id)
+    async def handle_delete(product):
+        await deleteProduct(product)
         await fillItems()
 
     async def handle_edit(product):
@@ -67,7 +62,7 @@ def ProductsCrud():
         set_name(product["name"])
         set_description(product["description"])
         set_props(product["props"])
-        set_enabled(product["enabled"])
+        set_props(product["stock"])
         set_product_id(product["id"])
 
     def delete_button_click_handler(e, product_id):
@@ -82,30 +77,64 @@ def ProductsCrud():
 
         asyncio.ensure_future(async_handler())
 
-    list_items = [html.li({
-        "key": index,
-        "class_name": "card card-body mb-2"
-    },
-        html.div(
-            html.p({
-                "class_name": "fw-bold h3"
-            }, f"{product['name']} - {product['description']}"),
-            html.p(
-                {
-                    "class_name": "text-muted"
-                },
-                f"{product['id']}",
-            ),
-            html.button({
-                "on_click": lambda e, prod=product["id"]: delete_button_click_handler(e, prod),
-                "class_name": "btn btn-danger"
-            }, "delete"),
-            html.button({
-                "on_click": lambda e, product=product: edit_button_click_handler(e, product),
-                "class_name": "btn btn-secondary"
-            }, "edit"),
+    def create_table_row(product):
+        return html.tr(
+            html.td(product['name']),
+            html.td(product['description']),
+            html.td(product['props']),
+            html.td(product['stock']),
+            html.td(product['enabled']),
+            html.td(
+                html.button({
+                    "on_click": lambda e, product_id=product["id"]: delete_button_click_handler(e, product_id),
+                    "class_name": "btn btn-danger"
+                }, "delete"),
+                html.button({
+                    "on_click": lambda e, product=product: edit_button_click_handler(e, product),
+                    "class_name": "btn btn-secondary"
+                }, "edit"),
+            )
         )
-    ) for index, product in enumerate(products)]
+
+    list_items = html.div(
+        {"class": "card shadow mb-4"},
+        html.div(
+            {"class": "card-header py-3"},
+            html.h6({"class": "m-0 font-weight-bold text-primary"}, "Products Example"),
+        ),
+        html.div(
+            {"class": "card-body"},
+            html.div(
+                {"class": "table-responsive"},
+                html.table(
+                    {"class": "table table-bordered", "id": "dataTable", "width": "100%", "cellspacing": "0"},
+                    html.thead(
+                        html.tr(
+                            html.th("Name"),
+                            html.th("Description"),
+                            html.th("Props"),
+                            html.th("Stock"),
+                            html.th("Enabled"),
+                            html.th(""),
+                        ),
+                    ),
+                    html.tfoot(
+                        html.tr(
+                            html.th("Name"),
+                            html.th("Description"),
+                            html.th("Props"),
+                            html.th("Stock"),
+                            html.th("Enabled"),
+                            html.th(""),
+                        ),
+                    ),
+                    html.tbody(
+                        [create_table_row(row) for row in products]
+                    ),
+                ),
+            ),
+        ),
+    )
 
     return html.div(
         {
@@ -113,6 +142,7 @@ def ProductsCrud():
                 "padding": "3rem",
             }
         },
+        list_items,
         html.form(
             {
                 "on_submit": handle_submit
@@ -132,13 +162,24 @@ def ProductsCrud():
                 "value": description,
                 "class_name": "form-control mb-2"
             }),
+
+            html.input({
+                "type": "number",
+                "placeholder": "Stock",
+                "on_change": lambda e: set_stock(e["target"]["value"]),
+                "value": stock,
+                "class_name": "form-control mb-2"
+            }),
+            html.input({
+                "type": "text",
+                "placeholder": "Props",
+                "on_change": lambda e: set_props(e["target"]["value"]),
+                "value": props,
+                "class_name": "form-control mb-2"
+            }),
             html.button({
                 "type": "submit",
                 "class_name": "btn btn-primary btn-block"
             }, "Create" if not editing else "Update"),
         ),
-        html.ul(
-            list_items
-        )
     )
-
