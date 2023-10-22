@@ -30,7 +30,6 @@ class Partner(PartnerBase):
 class RawMaterialBase(BaseModel):
     name: str
     description: str
-    partner_id: int
     props: Dict
     stock: int
     enabled: bool

@@ -86,6 +86,11 @@ sidebar = html.ul({
 
     ),
 
+    # Divider
+    html.hr({
+        "class": "sidebar-divider my-0"
+    }),
+
     # Heading - Interface
     html.div({
         "class": "sidebar-heading"

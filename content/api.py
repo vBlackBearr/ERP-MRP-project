@@ -60,7 +60,7 @@ async def deletePartner(partner_id):
 #
 async def getRawMaterials():
     async with httpx.AsyncClient() as client:
-        response = await client.get("http://localhost:8000/raw_materials")
+        response = await client.get("http://localhost:8000/backend/raw_materials")
 
     if response.status_code == 200:
         result = response.json()
@@ -71,7 +71,7 @@ async def getRawMaterials():
 
 async def getRawMaterial(raw_material_id):
     async with httpx.AsyncClient() as client:
-        response = await client.get(f"http://localhost:8000/raw_materials/{raw_material_id}")
+        response = await client.get(f"http://localhost:8000/backend/raw_materials/{raw_material_id}")
 
     if response.status_code == 200:
         result = response.json()
@@ -82,7 +82,7 @@ async def getRawMaterial(raw_material_id):
 
 async def postRawMaterial(new_raw_material):
     async with httpx.AsyncClient() as client:
-        response = await client.post("http://localhost:8000/raw_materials", json=new_raw_material)
+        response = await client.post("http://localhost:8000/backend/raw_materials", json=new_raw_material)
 
     if response.status_code == 200:
         result = response.json()
@@ -93,7 +93,7 @@ async def postRawMaterial(new_raw_material):
 
 async def updateRawMaterial(raw_material_id, updated_raw_material):
     async with httpx.AsyncClient() as client:
-        response = await client.put(f"http://localhost:8000/raw_materials/{raw_material_id}", json=updated_raw_material)
+        response = await client.put(f"http://localhost:8000/backend/raw_materials/{raw_material_id}", json=updated_raw_material)
 
     if response.status_code == 200:
         result = response.json()
@@ -104,7 +104,7 @@ async def updateRawMaterial(raw_material_id, updated_raw_material):
 
 async def deleteRawMaterial(raw_material_id):
     async with httpx.AsyncClient() as client:
-        response = await client.delete(f"http://localhost:8000/raw_materials/{raw_material_id}")
+        response = await client.delete(f"http://localhost:8000/backend/raw_materials/{raw_material_id}")
 
     if response.status_code == 200:
         return True  # Éxito en la eliminación
@@ -117,59 +117,59 @@ async def deleteRawMaterial(raw_material_id):
 #     Raw materials stock
 #
 #
-async def getRawMaterialsStock():
-    async with httpx.AsyncClient() as client:
-        response = await client.get("http://localhost:8000/raw_materials_stock")
-
-    if response.status_code == 200:
-        result = response.json()
-        return result
-    else:
-        return []
-
-
-async def getRawMaterialStock(raw_material_stock_id):
-    async with httpx.AsyncClient() as client:
-        response = await client.get(f"http://localhost:8000/raw_materials_stock/{raw_material_stock_id}")
-
-    if response.status_code == 200:
-        result = response.json()
-        return result
-    else:
-        return []
-
-
-async def postRawMaterialStock(new_raw_material_stock):
-    async with httpx.AsyncClient() as client:
-        response = await client.post("http://localhost:8000/raw_materials_stock", json=new_raw_material_stock)
-
-    if response.status_code == 200:
-        result = response.json()
-        return result
-    else:
-        return None
-
-
-async def updateRawMaterialStock(raw_material_stock_id, updated_raw_material_stock):
-    async with httpx.AsyncClient() as client:
-        response = await client.put(f"http://localhost:8000/raw_materials_stock/{raw_material_stock_id}",
-                                    json=updated_raw_material_stock)
-
-    if response.status_code == 200:
-        result = response.json()
-        return result
-    else:
-        return None
-
-
-async def deleteRawMaterialStock(raw_material_stock_id):
-    async with httpx.AsyncClient() as client:
-        response = await client.delete(f"http://localhost:8000/raw_materials_stock/{raw_material_stock_id}")
-
-    if response.status_code == 200:
-        return True  # Éxito en la eliminación
-    else:
-        return False  # Fallo en la eliminación
+# async def getRawMaterialsStock():
+#     async with httpx.AsyncClient() as client:
+#         response = await client.get("http://localhost:8000/raw_materials_stock")
+#
+#     if response.status_code == 200:
+#         result = response.json()
+#         return result
+#     else:
+#         return []
+#
+#
+# async def getRawMaterialStock(raw_material_stock_id):
+#     async with httpx.AsyncClient() as client:
+#         response = await client.get(f"http://localhost:8000/raw_materials_stock/{raw_material_stock_id}")
+#
+#     if response.status_code == 200:
+#         result = response.json()
+#         return result
+#     else:
+#         return []
+#
+#
+# async def postRawMaterialStock(new_raw_material_stock):
+#     async with httpx.AsyncClient() as client:
+#         response = await client.post("http://localhost:8000/raw_materials_stock", json=new_raw_material_stock)
+#
+#     if response.status_code == 200:
+#         result = response.json()
+#         return result
+#     else:
+#         return None
+#
+#
+# async def updateRawMaterialStock(raw_material_stock_id, updated_raw_material_stock):
+#     async with httpx.AsyncClient() as client:
+#         response = await client.put(f"http://localhost:8000/raw_materials_stock/{raw_material_stock_id}",
+#                                     json=updated_raw_material_stock)
+#
+#     if response.status_code == 200:
+#         result = response.json()
+#         return result
+#     else:
+#         return None
+#
+#
+# async def deleteRawMaterialStock(raw_material_stock_id):
+#     async with httpx.AsyncClient() as client:
+#         response = await client.delete(f"http://localhost:8000/raw_materials_stock/{raw_material_stock_id}")
+#
+#     if response.status_code == 200:
+#         return True  # Éxito en la eliminación
+#     else:
+#         return False  # Fallo en la eliminación
 
 
 #
