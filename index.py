@@ -14,11 +14,12 @@ from content.screens.RawMaterials import RawMaterials
 from content.screens.Products import Products
 from content.screens.Sales import Sales
 
-#routers
+# routers
 from content.cruds.controllers.controllerPartners import router as router_partners
 from content.cruds.controllers.controllerRawMaterials import router as router_raw_materials
 from content.cruds.controllers.controllerProducts import router as router_products
 from content.cruds.controllers.controllerSales import router as router_sales
+from content.endp.pedidos import router as router_pedidos
 
 
 app = FastAPI()
@@ -47,6 +48,7 @@ app.include_router(router_partners)
 app.include_router(router_raw_materials)
 app.include_router(router_products)
 app.include_router(router_sales)
+app.include_router(router_pedidos)
 
 
 configure(app, App)

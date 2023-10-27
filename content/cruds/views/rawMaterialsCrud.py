@@ -1,16 +1,9 @@
-from fastapi import FastAPI
-from reactpy.backend.fastapi import configure
 from reactpy import component, html, use_state, use_effect
 
 import asyncio
 from content.cruds.controllers.controllerRawMaterials import router
 import reactpy
 from content.api import getRawMaterials, postRawMaterial, deleteRawMaterial
-
-bootstrap_css = html.link({
-    "rel": "stylesheet",
-    "href": "https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
-})
 
 
 @component
@@ -154,7 +147,6 @@ def RawMaterialsCrud():
                 "padding": "3rem",
             }
         },
-        bootstrap_css,
         html.form(
             {
                 "on_submit": handle_submit
@@ -188,10 +180,3 @@ def RawMaterialsCrud():
         ),
         list_items
     )
-
-
-app = FastAPI()
-
-app.include_router(router)
-
-configure(app, RawMaterialsCrud)

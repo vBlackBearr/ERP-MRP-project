@@ -1,11 +1,6 @@
-from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
 from sqlalchemy import Column, Integer, String, JSON, Boolean, ForeignKey, Date, DECIMAL
 from sqlalchemy.orm import relationship
 from content.database import Base
-
-app = FastAPI()
-app.mount("/content", StaticFiles(directory="content"), name="content")
 
 
 class Partner(Base):

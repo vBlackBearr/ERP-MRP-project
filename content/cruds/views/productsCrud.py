@@ -162,7 +162,6 @@ def ProductsCrud():
                 "value": description,
                 "class_name": "form-control mb-2"
             }),
-
             html.input({
                 "type": "number",
                 "placeholder": "Stock",
