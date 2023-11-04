@@ -152,3 +152,4 @@ def PartnersCrud():
             list_items
         )
     )
+
